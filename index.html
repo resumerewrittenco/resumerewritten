@@ -1,336 +1,536 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ResumeRewritten — Career Repositioning for Experienced Professionals</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    background: #0d0d0d;
-    color: #e8e4dc;
-    font-family: 'DM Sans', sans-serif;
-    min-height: 100vh;
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --gold: #c9a96e;
+    --gold-light: #e2c99a;
+    --dark: #0a0a08;
+    --dark-2: #111110;
+    --dark-3: #181816;
+    --text: #e8e3d8;
+    --text-muted: rgba(232,227,216,0.55);
+    --text-faint: rgba(232,227,216,0.28);
+    --border: rgba(255,255,255,0.07);
   }
-  .nav {
-    padding: 1.5rem 3rem;
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--dark);
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.25rem 4rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 0.5px solid rgba(255,255,255,0.08);
+    background: rgba(10,10,8,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
   }
+
   .logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.25rem;
-    letter-spacing: 0.02em;
-    color: #e8e4dc;
-  }
-  .logo span { color: #c9a96e; }
-  .nav-cta {
-    background: #c9a96e;
-    color: #0d0d0d;
-    border: none;
-    padding: 0.6rem 1.4rem;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 500;
-    cursor: pointer;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-  }
-  .hero {
-    padding: 6rem 3rem 5rem;
-    max-width: 900px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  .eyebrow {
-    font-size: 0.75rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: #c9a96e;
-    margin-bottom: 1.5rem;
-    font-weight: 400;
-  }
-  h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    line-height: 1.15;
-    font-weight: 700;
-    color: #f0ece3;
-    margin-bottom: 1.5rem;
-  }
-  h1 em {
-    font-style: italic;
-    color: #c9a96e;
-  }
-  .hero-sub {
-    font-size: 1.1rem;
-    line-height: 1.75;
-    color: rgba(232,228,220,0.65);
-    max-width: 580px;
-    margin: 0 auto 2.5rem;
-    font-weight: 300;
-  }
-  .cta-primary {
-    display: inline-block;
-    background: #c9a96e;
-    color: #0d0d0d;
-    padding: 1rem 2.5rem;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    cursor: pointer;
-    border: none;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: var(--text);
     text-decoration: none;
   }
-  .divider {
-    width: 40px;
-    height: 1px;
-    background: #c9a96e;
-    margin: 5rem auto;
-    opacity: 0.5;
+  .logo em { font-style: italic; color: var(--gold); }
+
+  .nav-btn {
+    background: transparent;
+    border: 0.5px solid var(--gold);
+    color: var(--gold);
+    padding: 0.55rem 1.5rem;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
   }
-  .problem {
-    padding: 0 3rem;
-    max-width: 700px;
-    margin: 0 auto;
+  .nav-btn:hover { background: var(--gold); color: var(--dark); }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     text-align: center;
+    padding: 8rem 3rem 6rem;
+    position: relative;
+    overflow: hidden;
   }
-  .problem h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.75rem;
-    color: #f0ece3;
-    margin-bottom: 1.25rem;
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(201,169,110,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-tag {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2rem;
     font-weight: 400;
   }
-  .problem p {
-    font-size: 1rem;
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    line-height: 1.1;
+    font-weight: 600;
+    color: var(--text);
+    max-width: 820px;
+    margin-bottom: 1.75rem;
+  }
+
+  .hero h1 em { font-style: italic; color: var(--gold); }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    max-width: 560px;
+    margin: 0 auto 3rem;
     line-height: 1.8;
-    color: rgba(232,228,220,0.6);
-    font-weight: 300;
   }
-  .services {
-    padding: 5rem 3rem;
-    max-width: 900px;
-    margin: 0 auto;
+
+  .hero-ctas {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
   }
-  .services-label {
-    font-size: 0.75rem;
-    letter-spacing: 0.15em;
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--dark);
+    padding: 1rem 2.5rem;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: #c9a96e;
-    margin-bottom: 2.5rem;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold-light); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--text-muted);
+    padding: 1rem 2.5rem;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 0.5px solid var(--border);
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+    display: inline-block;
+  }
+  .btn-secondary:hover { border-color: rgba(255,255,255,0.2); color: var(--text); }
+
+  .rule {
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+    margin: 0 auto;
+    opacity: 0.4;
+  }
+
+  section { padding: 7rem 3rem; }
+
+  .section-tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+  }
+
+  .problem {
+    max-width: 760px;
+    margin: 0 auto;
     text-align: center;
   }
-  .cards {
+
+  .problem h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 3vw, 2.75rem);
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.25;
+    margin-bottom: 1.5rem;
+  }
+
+  .problem p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.85;
+    max-width: 620px;
+    margin: 0 auto;
+  }
+
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    max-width: 900px;
+    margin: 5rem auto 0;
+    border: 0.5px solid var(--border);
+  }
+
+  .stat {
+    background: var(--dark-2);
+    padding: 2.5rem 2rem;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 600;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+
+  .services-wrap { max-width: 960px; margin: 0 auto; }
+
+  .services-header { text-align: center; margin-bottom: 3.5rem; }
+
+  .services-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .cards-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1px;
-    background: rgba(255,255,255,0.06);
+    background: var(--border);
   }
+
   .card {
-    background: #111;
-    padding: 2.5rem;
+    background: var(--dark-2);
+    padding: 3rem;
+    transition: background 0.2s;
   }
+  .card:hover { background: var(--dark-3); }
+
   .card.featured {
-    background: #161410;
-    border-top: 2px solid #c9a96e;
+    background: var(--dark-3);
+    border-top: 1.5px solid var(--gold);
   }
-  .card-label {
-    font-size: 0.7rem;
+
+  .card-badge {
+    display: inline-block;
+    font-size: 0.65rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: #c9a96e;
-    margin-bottom: 1rem;
-  }
-  .card h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem;
-    color: #f0ece3;
-    margin-bottom: 0.75rem;
-    font-weight: 400;
-  }
-  .card p {
-    font-size: 0.9rem;
-    color: rgba(232,228,220,0.5);
-    line-height: 1.7;
-    font-weight: 300;
+    color: var(--gold);
+    border: 0.5px solid rgba(201,169,110,0.3);
+    padding: 0.3rem 0.75rem;
     margin-bottom: 1.5rem;
   }
-  .price {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    color: #f0ece3;
+
+  .card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
   }
-  .price span {
-    font-size: 0.85rem;
-    color: rgba(232,228,220,0.4);
-    font-family: 'DM Sans', sans-serif;
+
+  .card p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.75;
+    margin-bottom: 2rem;
   }
-  .rush {
-    margin-top: 1px;
-    background: #0f0f0f;
-    padding: 1.5rem 2.5rem;
+
+  .card-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+
+  .card-delivery {
+    font-size: 0.78rem;
+    color: var(--text-faint);
+    letter-spacing: 0.05em;
+    margin-bottom: 2rem;
+  }
+
+  .card-btn {
+    display: block;
+    text-align: center;
+    background: transparent;
+    border: 0.5px solid var(--gold);
+    color: var(--gold);
+    padding: 0.8rem 1.5rem;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
+  .card-btn:hover { background: var(--gold); color: var(--dark); }
+
+  .card.featured .card-btn { background: var(--gold); color: var(--dark); }
+  .card.featured .card-btn:hover { background: var(--gold-light); }
+
+  .rush-bar {
+    background: #0e0e0c;
+    border: 0.5px solid var(--border);
+    border-top: none;
+    padding: 1.5rem 3rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-  .rush p {
-    font-size: 0.9rem;
-    color: rgba(232,228,220,0.5);
-    font-weight: 300;
-  }
-  .rush p strong {
-    color: #e8e4dc;
-    font-weight: 500;
-  }
-  .rush-price {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.25rem;
-    color: #c9a96e;
-  }
-  .how {
-    padding: 5rem 3rem;
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  .how h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.75rem;
-    color: #f0ece3;
-    margin-bottom: 3rem;
-    font-weight: 400;
-  }
-  .steps {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
     gap: 2rem;
   }
+
+  .rush-bar p { font-size: 0.88rem; color: var(--text-muted); }
+  .rush-bar strong { color: var(--text); font-weight: 500; }
+
+  .rush-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    color: var(--gold);
+    white-space: nowrap;
+  }
+
+  .process-wrap { max-width: 860px; margin: 0 auto; text-align: center; }
+
+  .process-wrap h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4rem;
+  }
+
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3rem; text-align: left; }
+
   .step-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 3rem;
-    color: rgba(201,169,110,0.2);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    color: rgba(201,169,110,0.15);
     line-height: 1;
-    margin-bottom: 0.75rem;
+    margin-bottom: 1rem;
   }
-  .step h4 {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: #f0ece3;
-    margin-bottom: 0.5rem;
-    letter-spacing: 0.03em;
-  }
-  .step p {
-    font-size: 0.85rem;
-    color: rgba(232,228,220,0.45);
-    line-height: 1.7;
-    font-weight: 300;
-  }
-  .bottom-cta {
-    padding: 5rem 3rem;
+
+  .step h4 { font-size: 0.9rem; font-weight: 500; color: var(--text); margin-bottom: 0.5rem; letter-spacing: 0.03em; }
+  .step p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.75; }
+
+  .final-cta {
     text-align: center;
-    border-top: 0.5px solid rgba(255,255,255,0.06);
+    border-top: 0.5px solid var(--border);
+    background: var(--dark-2);
   }
-  .bottom-cta h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    color: #f0ece3;
-    margin-bottom: 0.75rem;
-    font-weight: 400;
+
+  .final-cta h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 1rem;
+    line-height: 1.2;
   }
-  .bottom-cta p {
-    color: rgba(232,228,220,0.45);
-    font-size: 0.95rem;
-    margin-bottom: 2rem;
-    font-weight: 300;
-  }
+  .final-cta h2 em { font-style: italic; color: var(--gold); }
+  .final-cta p { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 2.5rem; }
+
   footer {
-    padding: 1.5rem 3rem;
-    border-top: 0.5px solid rgba(255,255,255,0.06);
+    padding: 2rem 4rem;
+    border-top: 0.5px solid var(--border);
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-  footer p {
-    font-size: 0.8rem;
-    color: rgba(232,228,220,0.25);
+
+  footer p { font-size: 0.78rem; color: var(--text-faint); }
+  footer a { color: var(--text-faint); text-decoration: none; font-size: 0.78rem; transition: color 0.2s; }
+  footer a:hover { color: var(--gold); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-tag { animation: fadeUp 0.6s ease both; }
+  .hero h1 { animation: fadeUp 0.6s 0.1s ease both; }
+  .hero-sub { animation: fadeUp 0.6s 0.2s ease both; }
+  .hero-ctas { animation: fadeUp 0.6s 0.3s ease both; }
+
+  @media (max-width: 680px) {
+    nav { padding: 1rem 1.5rem; }
+    section { padding: 5rem 1.5rem; }
+    .hero { padding: 7rem 1.5rem 5rem; }
+    .cards-grid { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr; gap: 2rem; }
+    .stats { grid-template-columns: 1fr; }
+    .rush-bar { flex-direction: column; align-items: flex-start; padding: 1.5rem; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem; }
   }
 </style>
 </head>
 <body>
 
-<nav class="nav">
-  <div class="logo">Resume<span>Rewritten</span></div>
-  <button class="nav-cta">Get Started</button>
+<nav>
+  <a href="#" class="logo">Resume<em>Rewritten</em></a>
+  <a href="https://buy.stripe.com/9B66oJ0y57RC2Y82yE6J200" class="nav-btn">Get Started</a>
 </nav>
 
 <section class="hero">
-  <p class="eyebrow">Professional Resume Services</p>
-  <h1>Your resume got you here.<br><em>It won't get you there.</em></h1>
-  <p class="hero-sub">You've spent 20 years building an extraordinary career. Your resume should reflect that — and today's hiring process demands it.</p>
-  <a class="cta-primary">Get Your Resume Rewritten</a>
-</section>
-
-<div class="divider"></div>
-
-<section class="problem">
-  <h2>The rules changed while you were busy succeeding.</h2>
-  <p>Applicant tracking systems, modern formatting, and keyword optimization didn't exist the last time you updated your resume. Hiring managers spend 7 seconds on a first scan. If your resume isn't built for today's process, it's working against you — no matter how qualified you are.</p>
-</section>
-
-<section class="services">
-  <p class="services-label">What we offer</p>
-  <div class="cards">
-    <div class="card">
-      <p class="card-label">Basic</p>
-      <h3>Resume Rewrite</h3>
-      <p>Your resume rebuilt from scratch — optimized for ATS systems, modern formatting, and the roles you're actually targeting.</p>
-      <div class="price">$150 <span>/ 48-hr delivery</span></div>
-    </div>
-    <div class="card featured">
-      <p class="card-label">Most Popular</p>
-      <h3>Resume + LinkedIn</h3>
-      <p>Everything in the resume rewrite, plus a complete LinkedIn profile overhaul — headline, About section, and experience rewritten.</p>
-      <div class="price">$225 <span>/ 48-hr delivery</span></div>
-    </div>
-  </div>
-  <div class="rush">
-    <p><strong>Need it faster?</strong> Add 24-hour rush delivery to either package.</p>
-    <div class="rush-price">+$20</div>
+  <p class="hero-tag">Career Repositioning for Experienced Professionals</p>
+  <h1>20 years of experience<br>doesn't automatically<br><em>get you interviews anymore.</em></h1>
+  <p class="hero-sub">We help mid and senior-level professionals re-enter the job market with resumes and LinkedIn profiles built for how hiring actually works today.</p>
+  <div class="hero-ctas">
+    <a href="https://buy.stripe.com/9B66oJ0y57RC2Y82yE6J200" class="btn-primary">Start Your Career Re-Entry</a>
+    <a href="#services" class="btn-secondary">View Packages</a>
   </div>
 </section>
 
-<section class="how">
-  <h2>Simple. Fast. No back-and-forth.</h2>
-  <div class="steps">
-    <div class="step">
-      <div class="step-num">01</div>
-      <h4>Submit your materials</h4>
-      <p>Share your current resume, target role, and a few notes about your career wins.</p>
+<div class="rule"></div>
+
+<section>
+  <div class="problem">
+    <p class="section-tag">The problem</p>
+    <h2>Hiring systems changed.<br>So did recruiter expectations.</h2>
+    <p>Today, your experience has to be translated — not just listed. Most resumes fail not because of what's in them, but because they don't reflect senior-level impact in a way modern hiring teams recognize. If you've been in your field for 15 or 20 years, your resume probably looks like it. We fix that.</p>
+  </div>
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-num">7</div>
+      <div class="stat-label">Seconds — average recruiter first scan</div>
     </div>
-    <div class="step">
-      <div class="step-num">02</div>
-      <h4>We rewrite everything</h4>
-      <p>Your resume is rebuilt from the ground up for today's hiring process.</p>
+    <div class="stat">
+      <div class="stat-num">75%</div>
+      <div class="stat-label">Resumes filtered before human eyes</div>
     </div>
-    <div class="step">
-      <div class="step-num">03</div>
-      <h4>Receive your documents</h4>
-      <p>Delivered to your inbox within 48 hours, ready to send.</p>
+    <div class="stat">
+      <div class="stat-num">3×</div>
+      <div class="stat-label">More interviews with optimized positioning</div>
     </div>
   </div>
 </section>
 
-<section class="bottom-cta">
-  <h2>Ready to get back in the room?</h2>
-  <p>One submission. 48 hours. A resume that actually works.</p>
-  <a class="cta-primary">Get Started Today</a>
+<section id="services" style="background: var(--dark-2); border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border);">
+  <div class="services-wrap">
+    <div class="services-header">
+      <p class="section-tag">What we offer</p>
+      <h2>Choose your package</h2>
+    </div>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-badge">Basic</div>
+        <h3>Career Re-Entry<br>Resume Rewrite</h3>
+        <p>We rebuild your resume around your actual value in today's job market — focusing on positioning, clarity, and impact that modern hiring teams recognize.</p>
+        <div class="card-price">$150</div>
+        <div class="card-delivery">Delivered within 48 hours</div>
+        <a href="https://buy.stripe.com/9B66oJ0y57RC2Y82yE6J200" class="card-btn">Get Started</a>
+      </div>
+      <div class="card featured">
+        <div class="card-badge">Most Popular</div>
+        <h3>Career Re-Entry<br>Resume + LinkedIn</h3>
+        <p>Everything in the resume rewrite, plus a complete LinkedIn profile aligned to your target roles — headline, About section, and experience fully repositioned.</p>
+        <div class="card-price">$225</div>
+        <div class="card-delivery">Delivered within 48 hours</div>
+        <a href="https://buy.stripe.com/28EaEZ5Spfk46ak8X26J201" class="card-btn">Get Started</a>
+      </div>
+    </div>
+    <div class="rush-bar">
+      <p><strong>Need it faster?</strong> Add 24-hour rush delivery to either package for an additional $20. Select at checkout.</p>
+      <div class="rush-price">+$20 rush</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="process-wrap">
+    <p class="section-tag">How it works</p>
+    <h2>Clear process. Structured intake.<br>Fully rewritten documents.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h4>Career intake</h4>
+        <p>After payment you'll complete a short intake form. We learn your background, goals, target roles, and the wins that define your career.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h4>Positioning rewrite</h4>
+        <p>We reframe your experience for today's hiring expectations — translating decades of impact into language that gets you in the room.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h4>Delivery</h4>
+        <p>Polished, job-ready documents delivered to your inbox within 48 hours. Ready to send the moment you receive them.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <p class="section-tag">Get started</p>
+  <h2>Ready to get<br><em>interviews again?</em></h2>
+  <p>One clear positioning shift can change everything.</p>
+  <a href="https://buy.stripe.com/9B66oJ0y57RC2Y82yE6J200" class="btn-primary">Start Your Career Re-Entry</a>
 </section>
 
 <footer>
   <p>© 2026 ResumeRewritten. All rights reserved.</p>
+  <a href="mailto:resumerewrittenco@gmail.com">resumerewrittenco@gmail.com</a>
   <p>resumerewritten.org</p>
 </footer>
 
