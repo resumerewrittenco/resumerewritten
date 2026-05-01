@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAQ — ResumeRewritten</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --gold: #c9a96e; --gold-light: #e2c99a; --dark: #0a0a08; --dark-2: #111110;
+    --dark-3: #181816; --text: #e8e3d8; --text-muted: rgba(232,227,216,0.55);
+    --text-faint: rgba(232,227,216,0.28); --border: rgba(255,255,255,0.07);
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--dark); color: var(--text); font-family: 'Outfit', sans-serif; font-weight: 300; line-height: 1.7; overflow-x: hidden; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.25rem 4rem; display: flex; justify-content: space-between; align-items: center; background: rgba(10,10,8,0.92); backdrop-filter: blur(12px); border-bottom: 0.5px solid var(--border); }
+  .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600; letter-spacing: 0.03em; color: var(--text); text-decoration: none; }
+  .logo em { font-style: italic; color: var(--gold); }
+  .nav-links { display: flex; align-items: center; gap: 2rem; }
+  .nav-link { font-family: 'Outfit', sans-serif; font-size: 0.78rem; font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+  .nav-link:hover { color: var(--text); }
+  .nav-link.active { color: var(--text); }
+  .nav-btn { background: transparent; border: 0.5px solid var(--gold); color: var(--gold); padding: 0.55rem 1.5rem; font-family: 'Outfit', sans-serif; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; text-decoration: none; transition: background 0.2s, color 0.2s; }
+  .nav-btn:hover { background: var(--gold); color: var(--dark); }
+  .page-hero { padding: 12rem 3rem 6rem; text-align: center; max-width: 760px; margin: 0 auto; }
+  .section-tag { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; font-weight: 400; display: block; }
+  h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 600; color: var(--text); line-height: 1.15; margin-bottom: 1.5rem; }
+  h1 em { font-style: italic; color: var(--gold); }
+  .lead { font-size: 1.05rem; color: var(--text-muted); line-height: 1.85; max-width: 580px; margin: 0 auto; }
+  .rule { width: 1px; height: 80px; background: linear-gradient(to bottom, transparent, var(--gold), transparent); margin: 0 auto; opacity: 0.4; }
+  section { padding: 7rem 3rem; }
+  .faq-wrap { max-width: 760px; margin: 0 auto; }
+  .faq-category { margin-bottom: 4rem; }
+  .faq-category-label { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 400; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 0.5px solid var(--border); display: block; }
+  .faq-item { padding: 1.75rem 0; border-bottom: 0.5px solid var(--border); cursor: pointer; }
+  .faq-item:last-child { border-bottom: none; }
+  .faq-question { display: flex; justify-content: space-between; align-items: center; gap: 2rem; }
+  .faq-question h4 { font-size: 0.95rem; font-weight: 500; color: var(--text); line-height: 1.5; }
+  .faq-icon { width: 20px; height: 20px; flex-shrink: 0; position: relative; }
+  .faq-icon::before, .faq-icon::after { content: ''; position: absolute; background: var(--gold); border-radius: 1px; transition: transform 0.2s, opacity 0.2s; }
+  .faq-icon::before { width: 12px; height: 1px; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+  .faq-icon::after { width: 1px; height: 12px; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+  .faq-item.open .faq-icon::after { transform: translate(-50%, -50%) rotate(90deg); opacity: 0; }
+  .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; }
+  .faq-answer p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.85; padding-top: 1rem; }
+  .faq-item.open .faq-answer { max-height: 300px; }
+  .cta-section { text-align: center; border-top: 0.5px solid var(--border); background: var(--dark-2); }
+  .cta-section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 600; color: var(--text); margin-bottom: 1rem; line-height: 1.2; }
+  .cta-section h2 em { font-style: italic; color: var(--gold); }
+  .cta-section p { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 2.5rem; }
+  .btn-primary { background: var(--gold); color: var(--dark); padding: 1rem 2.5rem; font-family: 'Outfit', sans-serif; font-size: 0.82rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border: none; cursor: pointer; transition: background 0.2s; display: inline-block; }
+  .btn-primary:hover { background: var(--gold-light); }
+  footer { padding: 2rem 4rem; border-top: 0.5px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  footer p { font-size: 0.78rem; color: var(--text-faint); }
+  footer a { color: var(--text-faint); text-decoration: none; font-size: 0.78rem; transition: color 0.2s; }
+  footer a:hover { color: var(--gold); }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  .page-hero .section-tag { animation: fadeUp 0.6s ease both; }
+  .page-hero h1 { animation: fadeUp 0.6s 0.1s ease both; }
+  .page-hero .lead { animation: fadeUp 0.6s 0.2s ease both; }
+  @media (max-width: 680px) {
+    nav { padding: 1rem 1.5rem; }
+    section { padding: 5rem 1.5rem; }
+    .page-hero { padding: 8rem 1.5rem 4rem; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Resume<em>Rewritten</em></a>
+  <div class="nav-links">
+    <a href="about.html" class="nav-link">About</a>
+    <a href="faq.html" class="nav-link active">FAQ</a>
+    <a href="https://buy.stripe.com/9B66oJ0y57RC2Y82yE6J200" class="nav-btn">Get Started</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <span class="section-tag">FAQ</span>
+  <h1>Common<br><em>questions.</em></h1>
+  <p class="lead">Everything you need to know before getting started. Don't see your question? Email us at resumerewrittenco@gmail.com.</p>
+</div>
+
+<div class="rule"></div>
+
+<section>
+  <div class="faq-wrap">
+
+    <div class="faq-category">
+      <span class="faq-category-label">About the service</span>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <h4>Is my resume written by AI?</h4>
+          <div class="faq-icon"></div>
+        </div>
+        <div class="faq-answer">
+          <p>No. Every resume is reviewed and written by an experienced HR professional who reads your intake, understands your career story, and makes strategic decisions about how to position your experience. We use every modern tool available to deliver the best possible result — just like every professional does today.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <h4>How do you know what hiring managers want?</h4>
+          <div class="faq-icon"></div>
+        </div>
+        <div class="faq-answer">
+          <p>Because we've been on that side of the table. Our strategist spent over a decade inside HR at Fortune 500 companies — reviewing thousands of applications, running recruiting processes, and making hiring decisions. We don't guess what works. We know.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <h4>How is this different from other resume services?</h4>
+          <div class="faq-icon"></div>
+        </div>
+        <div class="faq-answer">
+          <p>Most resume services plug your information into a polished template. We do career repositioning — rebuilding your narrative around impact, not duties, specifically for the roles you're targeting. The difference shows up in your interview rate, not just how your resume looks.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <h4>Who is this service for?</h4>
+          <div class="faq-icon"></div>
+        </div>
+        <div class="faq-answer">
+          <p>We specialize in mid and senior-level professionals with 10+ years of experience who are re-entering the job market after a layoff, career transition, or years at the same company. If your resume hasn't been updated in a while and the hiring process feels foreign, you're exactly who we built this for.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-category">
+      <span class="faq-category-label">The process</span>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <h4>What do I need to submit?</h4>
+          <div class="faq-icon"></div>
+        </div>
+        <div class="faq-answer">
+          <p>After payment you'll complete a short intake form. You'll upload your current resume, share your target role, describe your top career accomplishments, and optionally link to specific jobs you're targeting. That's everything we need to get started.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <h4>Do I need to get on a call?</h4>
+          <div class="faq-icon"></div>
+        </div>
+        <div class="faq-answer">
+          <p>No. The entire process is async. Pay, complete the intake form, receive your documents. No calls, no scheduling headaches, no back-and-forth. Everything is handled through our structured intake process.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <h4>How long does it take?</h4>
+          <div class="faq-icon"></div>
+        </div>
+        <div class="faq-answer">
+          <p>Standard delivery is 48 hours from the time you complete your intake form. Need it faster? Add our 24-hour rush delivery option at checkout for an additional $20.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <h4>What format will I receive my documents in?</h4>
+          <div class="faq-icon"></div>
+        </div>
+        <div class="faq-answer">
+          <p>Your rewritten resume will be delivered as a Word document (.docx) so you can easily edit and customize it going forward. If you've selected the LinkedIn package, your LinkedIn content will be delivered as a document with each section clearly labeled for easy copy-paste.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq-category">
+      <span class="faq-category-label">Pricing & guarantees</span>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <h4>What's included in each package?</h4>
+          <div class="faq-icon"></div>
+        </div>
+        <div class="faq-answer">
+          <p>The Basic package ($150) includes a full resume rewrite — rebuilt from scratch for today's hiring process. The Premium package ($225) includes everything in the Basic plus a complete LinkedIn profile overhaul: headline, About section, and experience rewritten and aligned to your target roles.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <h4>What if I'm not happy with the result?</h4>
+          <div class="faq-icon"></div>
+        </div>
+        <div class="faq-answer">
+          <p>We stand behind our work. If your rewritten resume doesn't feel like a meaningful improvement over what you submitted, reach out within 5 days of delivery and we'll make it right.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <h4>Is payment secure?</h4>
+          <div class="faq-icon"></div>
+        </div>
+        <div class="faq-answer">
+          <p>Yes. All payments are processed through Stripe, one of the world's most trusted payment processors. We never see or store your card information.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<section class="cta-section">
+  <span class="section-tag">Get started</span>
+  <h2>Still have questions?<br><em>Just reach out.</em></h2>
+  <p>Email us at resumerewrittenco@gmail.com — or go ahead and get started.</p>
+  <a href="https://buy.stripe.com/9B66oJ0y57RC2Y82yE6J200" class="btn-primary">Start Your Career Re-Entry</a>
+</section>
+
+<footer>
+  <p>© 2026 ResumeRewritten. All rights reserved.</p>
+  <a href="mailto:resumerewrittenco@gmail.com">resumerewrittenco@gmail.com</a>
+  <p>resumerewritten.org</p>
+</footer>
+
+<script>
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+
+</body>
+</html>
