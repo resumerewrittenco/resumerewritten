@@ -422,14 +422,19 @@
     .stats { grid-template-columns: 1fr; }
     .rush-bar { flex-direction: column; align-items: flex-start; padding: 1.5rem; }
     footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem; }
+    .bio-grid, .before-after-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
   }
 </style>
 </head>
 <body>
 
 <nav>
-  <a href="#" class="logo">Resume<em>Rewritten</em></a>
-  <a href="https://buy.stripe.com/9B66oJ0y57RC2Y82yE6J200" class="nav-btn">Get Started</a>
+  <a href="index.html" class="logo">Resume<em>Rewritten</em></a>
+  <div style="display:flex; align-items:center; gap:2rem;">
+    <a href="about.html" style="font-family:'Outfit',sans-serif; font-size:0.78rem; font-weight:400; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-muted); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text-muted)'">About</a>
+    <a href="faq.html" style="font-family:'Outfit',sans-serif; font-size:0.78rem; font-weight:400; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-muted); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text-muted)'">FAQ</a>
+    <a href="https://buy.stripe.com/9B66oJ0y57RC2Y82yE6J200" class="nav-btn">Get Started</a>
+  </div>
 </nav>
 
 <section class="hero">
